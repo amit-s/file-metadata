@@ -16,7 +16,10 @@ app.route('/')
 app.route('/fileupload')
 	.post(multer().single('user-file'), function(req,res){
 		if(req.file !== undefined){
-			res.json({size: req.file.size});
+			res.json({
+				name: req.file.originalname,
+				size: req.file.size
+			});
 		}else{
 			res.json({error: "No file uploaded"});
 		}
